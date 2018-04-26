@@ -17,7 +17,7 @@ public class CanvasChangeEvent : MonoBehaviour
         MainCanvas.SetActive(false);
         AddMessageCanvas.SetActive(true);
 
-        ARCamera.SetActive(false);
+        //ARCamera.SetActive(false);
     }
 
     public void BackToMain()
@@ -27,6 +27,6 @@ public class CanvasChangeEvent : MonoBehaviour
         MainCanvas.SetActive(true);
         AddMessageCanvas.SetActive(false);
 
-        ARCamera.SetActive(true);
+        //ARCamera.SetActive(true);
     }
 }
