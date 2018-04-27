@@ -51,6 +51,7 @@ public class RecordButtonManager : MonoBehaviour
 
         // 存檔路徑
         SaveLocation = Application.persistentDataPath + "/Voice/voice.wav";
+        Debug.Log("錄音:" + SaveLocation);
     }
     private void Update()
     {
@@ -93,6 +94,14 @@ public class RecordButtonManager : MonoBehaviour
         }
     }
     #endregion
+
+    // 還原
+    public void ResetAll()
+    {
+        state = RecordingState.Normal;
+        RecordingTime = 0;
+        SwitchToDefault();
+    }
 
     #region 按鍵圖片切換 Function
     private void SwitchToDefault()
