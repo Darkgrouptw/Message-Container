@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    private Material blurMat;
+	public RenderTexture DownSampleTexture;
+	private Camera ARCamera;
 
-    private void Start()
+	private void Start()
+	{
+		ARCamera = this.GetComponent<Camera>();	
+	}
+
+	public void SetSampleTexture()
     {
-        blurMat = new Material(Shader.Find("Custom/Blur"));
+		// 設定 DownSample
+		ARCamera.targetTexture = DownSampleTexture;
     }
-    private void OnRenderImage(RenderTexture source, RenderTexture destination)
-    {
-        if(blurMat != null)
-            Graphics.Blit(source, destination, blurMat);
-    }
+
+	public void ResetCameraTexture()
+	{
+		// 清空 Target Texture
+		ARCamera.targetTexture = null;
+	}
 }
