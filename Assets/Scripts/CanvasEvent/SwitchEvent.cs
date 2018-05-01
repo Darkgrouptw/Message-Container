@@ -6,26 +6,26 @@ using UnityEngine.UI;
 public class SwitchEvent : MonoBehaviour
 {
     public GameObject TextCanvas;
-    public GameObject VoiceCanvas;
     public GameObject PhotoCanvas;
+    public GameObject PressToRecordText;
 	
     /// <summary>
     /// 轉道 Canvas
     /// </summary>
     public void SwitchToVoiceCanvas()
     {
-        SwitchCanvasByBoolean(false, true, false);
-    }
-
-    public void SwtichToPhotCanvas()
-    {
         SwitchCanvasByBoolean(false, false, true);
     }
 
-    private void SwitchCanvasByBoolean(bool IsText = false, bool IsVoice = false, bool IsPhoto = false)
+    public void SwtichToPhotoCanvas()
+    {
+        SwitchCanvasByBoolean(true, true, false);
+    }
+
+    private void SwitchCanvasByBoolean(bool IsText = false, bool IsPhoto = false, bool IsShowRecordText = false)
     {
         TextCanvas.SetActive(IsText);
-        VoiceCanvas.SetActive(IsVoice);
+        PressToRecordText.SetActive(IsShowRecordText);
         PhotoCanvas.SetActive(IsPhoto);
     }
 }

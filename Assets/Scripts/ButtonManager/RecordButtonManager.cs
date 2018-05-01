@@ -17,14 +17,15 @@ public class RecordButtonManager : MonoBehaviour
     [Header("========== 圖片 ==========")]
     public Sprite DefaultImg;
     public Sprite RecordBG;
-    public Sprite DisableImg;
-
 
     // 物件
     [Header("========= 物件 =========")]
     public Image RecordButton;
     public GameObject PlayObject;
     public Text textObject;
+
+    // Photo 的部分
+    public GameObject DisablePhotoButton;
 
     // 錄音相關
     [Header("========= 錄音部分 =========")]
@@ -75,6 +76,7 @@ public class RecordButtonManager : MonoBehaviour
         {
             case RecordingState.Normal:
                 SwitchToRecording();
+                DisablePhotoButton.SetActive(true);
                 state = RecordingState.IsRecording;
                 break;
             case RecordingState.EndingRecording:
@@ -100,6 +102,7 @@ public class RecordButtonManager : MonoBehaviour
     {
         state = RecordingState.Normal;
         RecordingTime = 0;
+        DisablePhotoButton.SetActive(false);
         SwitchToDefault();
     }
 
@@ -122,10 +125,6 @@ public class RecordButtonManager : MonoBehaviour
         // 錄音
         if(MicrophoneDeviceName != "")
             MicrophoneClip = Microphone.Start(MicrophoneDeviceName, false, MaximumRecordingTime, AudioSettings.outputSampleRate);
-    }
-    private void SwitchToDisable()
-    {
-        RecordButton.sprite = DisableImg;
     }
     #endregion
     #region 錄音相關
