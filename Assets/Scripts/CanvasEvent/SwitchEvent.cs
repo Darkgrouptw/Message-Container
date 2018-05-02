@@ -22,6 +22,11 @@ public class SwitchEvent : MonoBehaviour
         SwitchCanvasByBoolean(true, true, false);
     }
 
+    public void SwitchToDefault()
+    {
+        SwitchCanvasByBoolean(true, false, true);
+    }
+
     private void SwitchCanvasByBoolean(bool IsText = false, bool IsPhoto = false, bool IsShowRecordText = false)
     {
         TextCanvas.SetActive(IsText);

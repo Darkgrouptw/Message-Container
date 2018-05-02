@@ -10,6 +10,7 @@ public class PhotoButtonManager : MonoBehaviour
 
     // 物件
     [Header("========= 物件 =========")]
+    public GameObject RecordButton;
     public GameObject DisableRecordButton;
     public GameObject Photo;
 
@@ -30,6 +31,7 @@ public class PhotoButtonManager : MonoBehaviour
     public void ResetAll()
     {
         IsPressOnce = false;
+        RecordButton.SetActive(true);
         DisableRecordButton.SetActive(false);
     }
 
@@ -39,6 +41,7 @@ public class PhotoButtonManager : MonoBehaviour
         if (!IsPressOnce)
         {
             IsPressOnce = true;
+            RecordButton.SetActive(false);
             DisableRecordButton.SetActive(true);
         }
     }
