@@ -114,6 +114,14 @@ public class CanvasChangeEvent : MonoBehaviour
         state = CanvasState.STATE_MAIN;
     }
 
+    public void PlaySource()
+    {
+        if(state == CanvasState.STATE_READ && !Source.isPlaying)
+        {
+            Source.Play();
+        }
+    }
+
     #region 讀檔的部分
     private void LoadText(string Path)
     {
