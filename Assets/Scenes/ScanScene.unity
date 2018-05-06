@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -543,9 +543,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCanvas: {fileID: 1666843661}
   AddMessageCanvas: {fileID: 1466327396}
-  ReadMessageCanvas: {fileID: 0}
+  ReadMessageCanvas: {fileID: 1159685773}
   ARCamera: {fileID: 1140793269}
-  CubeMeshRender: {fileID: 0}
+  CubeMeshRender: {fileID: 2067291866}
   jumper: {fileID: 243624366}
   TextCanvas: {fileID: 644056273}
   VoiceCanvas: {fileID: 714948143}
@@ -1763,7 +1763,7 @@ GameObject:
   - component: {fileID: 1159685775}
   - component: {fileID: 1159685774}
   m_Layer: 5
-  m_Name: Read Message
+  m_Name: Read Message Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2045,7 +2045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1466327397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2668,7 +2668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1666843662
 MonoBehaviour:
   m_ObjectHideFlags: 0
