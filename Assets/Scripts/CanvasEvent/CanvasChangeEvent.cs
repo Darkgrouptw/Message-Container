@@ -74,9 +74,17 @@ public class CanvasChangeEvent : MonoBehaviour
 		bool IsTextExist = System.IO.File.Exists(Application.persistentDataPath + "/content.txt");
 		bool IsVoiceExist = System.IO.File.Exists(Application.persistentDataPath + "/Voice/voice.wav");
         bool IsPhotoExist = System.IO.File.Exists(Application.persistentDataPath + "/pic.jpg");
+		Debug.Log ("Text Exist: " + IsTextExist.ToString ());
+		Debug.Log ("Voice Exist: " + IsVoiceExist.ToString ());
+		Debug.Log ("Photo Exist: " + IsPhotoExist.ToString ());
         TextCanvas.SetActive(IsTextExist);
         VoiceCanvas.SetActive(IsVoiceExist);
         PicCanvas.SetActive(IsPhotoExist);
+
+		/*if (IsTextExist) 
+		{
+			System.IO.File.ReadAllText
+		}*/
     }
 
     public void BackToMain()
