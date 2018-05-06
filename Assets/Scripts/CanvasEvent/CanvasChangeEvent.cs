@@ -38,6 +38,12 @@ public class CanvasChangeEvent : MonoBehaviour
                 MainToReadMessage();
             }
         }
+        else if(state == CanvasState.STATE_READ)
+        {
+            // 跳回來的部分
+            if (!jumper.IsSwitchOn() && !CubeMeshRender.enabled)
+                BackToMain();
+        }
     }
 
     public void MainToAddMessage()
@@ -79,9 +85,9 @@ public class CanvasChangeEvent : MonoBehaviour
 
         MainCanvas.SetActive(true);
         AddMessageCanvas.SetActive(false);
-
+        ReadMessageCanvas.SetActive(false);
 
         // 狀態
-        state = CanvasState.STATE_ADD;
+        state = CanvasState.STATE_MAIN;
     }
 }

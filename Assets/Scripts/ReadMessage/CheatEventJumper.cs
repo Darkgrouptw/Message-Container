@@ -19,7 +19,7 @@ public class CheatEventJumper : MonoBehaviour
     [Header("========== 延遲部分 ==========")]
     private float TimeCounter = 0;
     private const int DelayForVuforiaTime = 1;
-    private const int OnStatusTime = 10;
+    private const int OnStatusTime = 2;
 
     private void Update()
     {
