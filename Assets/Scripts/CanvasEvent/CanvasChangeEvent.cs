@@ -27,7 +27,7 @@ public class CanvasChangeEvent : MonoBehaviour
     public GameObject VoiceCanvas;
     public GameObject PicCanvas;
     public Text ContentText;
-    public AudioSource Source;
+	public AudioSource VoiceSource;
     public RawImage Pic;
 
 
@@ -116,9 +116,9 @@ public class CanvasChangeEvent : MonoBehaviour
 
     public void PlaySource()
     {
-        if(state == CanvasState.STATE_READ && !Source.isPlaying)
+		if(state == CanvasState.STATE_READ && !VoiceSource.isPlaying)
         {
-            Source.Play();
+			VoiceSource.Play();
         }
     }
 
@@ -130,23 +130,31 @@ public class CanvasChangeEvent : MonoBehaviour
     }
 
     private IEnumerator LoadVoice(string Path)
-    {
+	{
+		Path = "file://" + Path;
         WWW www = new WWW(Path);
-        while (!www.isDone)
-            yield return new WaitForSeconds(0.2f);
+		Debug.Log ("Voice Path: " + Path);
+		while (!www.isDone)
+			yield return null;
+            //yield return new WaitForSeconds(0.2f);
 
         readVoice = www.GetAudioClip();
-        Source.clip = readVoice;
+		Debug.Log ("Voice length:" + readVoice.length.ToString ());
+		VoiceSource.clip = readVoice;
     }
 
     private IEnumerator LoadImage(string Path)
     {
-        WWW www = new WWW(Path);
-        while (!www.isDone)
-            yield return new WaitForSeconds(0.2f);
+		Path = "file://" + Path;
+		Debug.Log ("Image Path: " + Path);
+		using (WWW www = new WWW (Path)) 
+		{
+			yield return www;
 
-        readImage = www.texture;
-        Pic.texture = readImage;
+			readImage = www.texture;
+			Debug.Log ("Pic length:" + readImage.height.ToString ());
+			Pic.texture = readImage;
+		}
     }
     #endregion
 }
