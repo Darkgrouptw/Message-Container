@@ -67,7 +67,7 @@ public class PhotoButtonManager : MonoBehaviour
         Debug.Log("Bytes: " + imgBytes.Length.ToString());
 
         if(imgBytes.Length > 0)
-            System.IO.File.WriteAllBytes(Application.persistentDataPath + "pic.jpg", imgBytes);
+            System.IO.File.WriteAllBytes(Application.persistentDataPath + "/pic.jpg", imgBytes);
 
         // 覆蓋圖片
         Photo.GetComponent<RawImage>().texture = textureImg;
