@@ -11,6 +11,9 @@ public class SendButtonEvent : MonoBehaviour
 
     public void SaveContentText()
     {
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/content.txt",contentText.text);
+
+		string SaveLocation = Application.persistentDataPath + "/content.txt";
+		System.IO.File.WriteAllText(SaveLocation,contentText.text);
+		Debug.Log ("寫入檔案: " + SaveLocation);
     }
 }

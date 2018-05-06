@@ -70,10 +70,10 @@ public class CanvasChangeEvent : MonoBehaviour
         //if(System.IO.File.Exists( Application.persistentDataPath + "/Voice/voice.wav"))
         //{
 
-        //}
+		//}
+		bool IsTextExist = System.IO.File.Exists(Application.persistentDataPath + "/content.txt");
+		bool IsVoiceExist = System.IO.File.Exists(Application.persistentDataPath + "/Voice/voice.wav");
         bool IsPhotoExist = System.IO.File.Exists(Application.persistentDataPath + "/pic.jpg");
-        bool IsVoiceExist = System.IO.File.Exists(Application.persistentDataPath + "/Voice/voice.wav");
-        bool IsTextExist = System.IO.File.Exists(Application.persistentDataPath + "/content.txt");
         TextCanvas.SetActive(IsTextExist);
         VoiceCanvas.SetActive(IsVoiceExist);
         PicCanvas.SetActive(IsPhotoExist);
