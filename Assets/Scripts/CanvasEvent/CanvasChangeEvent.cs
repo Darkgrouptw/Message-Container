@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 enum CanvasState
 {
@@ -25,6 +26,15 @@ public class CanvasChangeEvent : MonoBehaviour
     public GameObject TextCanvas;
     public GameObject VoiceCanvas;
     public GameObject PicCanvas;
+    public Text ContentText;
+    public AudioSource Source;
+    public RawImage Pic;
+
+
+    [Header("========== 讀檔的部分 ==========")]
+    private string readText;
+    private AudioClip readVoice;
+    private Texture2D readImage;
 
     private CanvasState state = CanvasState.STATE_MAIN;
 
@@ -65,26 +75,31 @@ public class CanvasChangeEvent : MonoBehaviour
         // 狀態
         state = CanvasState.STATE_READ;
 
-
-        // 判斷有沒有東西存在
-        //if(System.IO.File.Exists( Application.persistentDataPath + "/Voice/voice.wav"))
-        //{
-
-		//}
-		bool IsTextExist = System.IO.File.Exists(Application.persistentDataPath + "/content.txt");
-		bool IsVoiceExist = System.IO.File.Exists(Application.persistentDataPath + "/Voice/voice.wav");
-        bool IsPhotoExist = System.IO.File.Exists(Application.persistentDataPath + "/pic.jpg");
+        
+        #region 判斷有沒有東西存在
+        string TextPath = Application.persistentDataPath + "/content.txt";
+        string VoicePath = Application.persistentDataPath + "/Voice/voice.wav";
+        string PhotoPath = Application.persistentDataPath + "/pic.jpg";
+        bool IsTextExist = System.IO.File.Exists(TextPath);
+		bool IsVoiceExist = System.IO.File.Exists(VoicePath);
+        bool IsPhotoExist = System.IO.File.Exists(PhotoPath);
 		Debug.Log ("Text Exist: " + IsTextExist.ToString ());
 		Debug.Log ("Voice Exist: " + IsVoiceExist.ToString ());
 		Debug.Log ("Photo Exist: " + IsPhotoExist.ToString ());
+        #endregion
+        #region 開始讀內容
+        if (IsTextExist)
+            LoadText(TextPath);
+        if (IsVoiceExist)
+            StartCoroutine(LoadVoice(VoicePath));
+        if (IsPhotoExist)
+            StartCoroutine(LoadImage(PhotoPath));
+        #endregion
+        #region 顯示 Canvas
         TextCanvas.SetActive(IsTextExist);
         VoiceCanvas.SetActive(IsVoiceExist);
         PicCanvas.SetActive(IsPhotoExist);
-
-		/*if (IsTextExist) 
-		{
-			System.IO.File.ReadAllText
-		}*/
+        #endregion
     }
 
     public void BackToMain()
@@ -98,4 +113,32 @@ public class CanvasChangeEvent : MonoBehaviour
         // 狀態
         state = CanvasState.STATE_MAIN;
     }
+
+    #region 讀檔的部分
+    private void LoadText(string Path)
+    {
+        readText = System.IO.File.ReadAllText(Path);
+        ContentText.text = readText;
+    }
+
+    private IEnumerator LoadVoice(string Path)
+    {
+        WWW www = new WWW(Path);
+        while (!www.isDone)
+            yield return new WaitForSeconds(0.2f);
+
+        readVoice = www.GetAudioClip();
+        Source.clip = readVoice;
+    }
+
+    private IEnumerator LoadImage(string Path)
+    {
+        WWW www = new WWW(Path);
+        while (!www.isDone)
+            yield return new WaitForSeconds(0.2f);
+
+        readImage = www.texture;
+        Pic.texture = readImage;
+    }
+    #endregion
 }
