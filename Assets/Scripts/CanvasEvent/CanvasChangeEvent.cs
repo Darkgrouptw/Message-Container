@@ -22,6 +22,9 @@ public class CanvasChangeEvent : MonoBehaviour
     [Header("========== 讀訊息的部分 ==========")]
     public MeshRenderer CubeMeshRender;
     public CheatEventJumper jumper;
+    public GameObject TextCanvas;
+    public GameObject VoiceCanvas;
+    public GameObject PicCanvas;
 
     private CanvasState state = CanvasState.STATE_MAIN;
 
@@ -62,7 +65,12 @@ public class CanvasChangeEvent : MonoBehaviour
         //{
 
         //}
-        //if(System.IO.File.Exists)
+        bool IsPhotoExist = System.IO.File.Exists(Application.persistentDataPath + "pic.jpg");
+        bool IsVoiceExist = System.IO.File.Exists(Application.persistentDataPath + "/Voice/voice.wav");
+        bool IsTextExist = System.IO.File.Exists(Application.persistentDataPath + "content.txt");
+        TextCanvas.SetActive(IsTextExist);
+        VoiceCanvas.SetActive(IsVoiceExist);
+        PicCanvas.SetActive(IsPhotoExist);
     }
 
     public void BackToMain()

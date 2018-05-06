@@ -547,6 +547,9 @@ MonoBehaviour:
   ARCamera: {fileID: 1140793269}
   CubeMeshRender: {fileID: 0}
   jumper: {fileID: 243624366}
+  TextCanvas: {fileID: 644056273}
+  VoiceCanvas: {fileID: 714948143}
+  PicCanvas: {fileID: 1625016006}
 --- !u!114 &243624365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,7 +989,7 @@ GameObject:
   - component: {fileID: 714948146}
   - component: {fileID: 714948145}
   m_Layer: 5
-  m_Name: MessageBox Sound
+  m_Name: MessageBox Voice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
