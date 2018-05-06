@@ -62,7 +62,12 @@ public class PhotoButtonManager : MonoBehaviour
         textureImg = www.texture;
         if (textureImg == null)
             Debug.LogError("讀取失敗: " + url);
-		Debug.Log (textureImg.height);
+        // 存圖片
+        byte[] imgBytes = textureImg.EncodeToJPG();
+        Debug.Log("Bytes: " + imgBytes.Length.ToString());
+
+        if(imgBytes.Length > 0)
+            System.IO.File.WriteAllBytes(Application.persistentDataPath + "pic.jpg", imgBytes);
 
         // 覆蓋圖片
         Photo.GetComponent<RawImage>().texture = textureImg;
