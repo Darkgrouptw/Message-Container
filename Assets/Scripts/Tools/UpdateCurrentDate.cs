@@ -17,4 +17,14 @@ public class UpdateCurrentDate : MonoBehaviour {
             Debug.Log("沒有文字可以改時間!!");
 	}
 
+	public void ClearFile()
+	{
+		string TextPath = Application.persistentDataPath + "/content.txt";
+		string VoicePath = Application.persistentDataPath + "/Voice/voice.wav";
+		string PhotoPath = Application.persistentDataPath + "/pic.jpg";
+		System.IO.File.Delete (TextPath);
+		System.IO.File.Delete (VoicePath);
+		System.IO.File.Delete (PhotoPath);
+		Debug.Log ("Delete File Success");
+	}
 }

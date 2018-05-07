@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 243624363}
   - component: {fileID: 243624362}
   - component: {fileID: 243624367}
+  - component: {fileID: 243624368}
   - component: {fileID: 243624366}
   m_Layer: 0
   m_Name: EventObject
@@ -632,6 +633,7 @@ MonoBehaviour:
   RecordButton: {fileID: 424808486}
   DisableRecordButton: {fileID: 770573142}
   Photo: {fileID: 1841398141}
+  connector: {fileID: 243624368}
   textureImg: {fileID: 0}
 --- !u!114 &243624363
 MonoBehaviour:
@@ -672,7 +674,7 @@ MonoBehaviour:
   VoiceCanvas: {fileID: 714948143}
   PicCanvas: {fileID: 1625016006}
   ContentText: {fileID: 1281876523}
-  Source: {fileID: 1170915202}
+  VoiceSource: {fileID: 1170915202}
   Pic: {fileID: 1173725373}
 --- !u!114 &243624365
 MonoBehaviour:
@@ -711,6 +713,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contentText: {fileID: 537813914}
+--- !u!114 &243624368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 243624359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90eb3e3e0d1f494e9c24ae8ec26a639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &390679408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1265,7 @@ GameObject:
   - component: {fileID: 811134304}
   - component: {fileID: 811134306}
   - component: {fileID: 811134305}
+  - component: {fileID: 811134307}
   m_Layer: 5
   m_Name: DateBtn
   m_TagString: Untagged
@@ -1310,6 +1324,58 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 811134303}
+--- !u!114 &811134307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 811134303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 811134305}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 243624360}
+        m_MethodName: ClearFile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &897624146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,6 +2782,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 243624368}
+        m_MethodName: SendTextMessage
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 537813914}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -14,16 +14,21 @@ public class PhotoButtonManager : MonoBehaviour
     public GameObject DisableRecordButton;
     public GameObject Photo;
 
+	public ServerConnector connector;
+
     private bool IsPressOnce = false;
+	private bool IsFinishLoading = false;
 
 	[SerializeField]
     private Texture2D textureImg;
+	private Texture2D downsampleImg;
 
     private void Awake()
     {
         imgPicker.Completed += (string path) =>
         {
             StartCoroutine(LoadImage(path));
+			StartCoroutine(DownScaledFromServer());
         };
     }
 
@@ -49,6 +54,7 @@ public class PhotoButtonManager : MonoBehaviour
 	// 圖片中，按加的時候會產生的事件
 	public void PhotoPickerShow()
 	{
+		IsFinishLoading = false;
 		imgPicker.Show("Select Image", "unimgpicker", 1024);
 	}
     #endregion
@@ -71,6 +77,19 @@ public class PhotoButtonManager : MonoBehaviour
 
         // 覆蓋圖片
         Photo.GetComponent<RawImage>().texture = textureImg;
+		downsampleImg = GameObject.Instantiate (textureImg) as Texture2D;
+		IsFinishLoading = true;
     }
+	private IEnumerator DownScaledFromServer()
+	{
+		if (!IsFinishLoading)
+			yield return new WaitForSeconds (0.1f);
+
+		downsampleImg.Resize (10, 10);
+		downsampleImg.Apply ();
+		string imgData = System.Convert.ToBase64String (downsampleImg.EncodeToJPG ());
+		connector.SendImgMessage (imgData);
+		
+	}
     #endregion
 }
